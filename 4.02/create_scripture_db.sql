@@ -38,7 +38,7 @@ VALUES
 , 'John'
 , 1
 , 5
-, 'And the alight shineth in bdarkness; and the darkness ccomprehended it not.');
+, 'And the light shineth in darkness; and the darkness comprehended it not.');
 
 INSERT INTO scriptures
 ( id
@@ -64,7 +64,7 @@ VALUES
 , 'Doctorine and Covenants'
 , 93
 , 28
-, 'Man was also in the beginning with God. Intelligence, or the clight of truth, was not created or made, neither indeed can be.');
+, 'Man was also in the beginning with God. Intelligence, or the light of truth, was not created or made, neither indeed can be.');
 
 INSERT INTO scriptures
 ( id
