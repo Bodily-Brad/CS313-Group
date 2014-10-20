@@ -11,32 +11,17 @@ and open the template in the editor.
     </head>
     <body>
         <?php
-        // put your code here
-        // This will be moved to controller
+        // Connection to db
         require_once('dbConnection.php');
-        $db = loadDB();
         
-        // Get all scriptures
-        $query = "
-            SELECT *
-            FROM   scriptures";
-
-        try {
-            $statement = $db->prepare($query);
-            $statement->execute();
-            $scriptures = $statement->fetchAll();
-            $statement->closeCursor();
-        } catch (PDOException $ex) {
-            echo $ex->getMessage();
-            exit;
-        }
-        
-        foreach ($scriptures as $scripture)
+        if (!empty($scriptures))
         {
-            $topics = getTopicsByScriptureID($scripture['id']);
-            include('_displayScripture.php');
+            foreach ($scriptures as $scripture)
+            {
+                $topics = getTopicsByScriptureID($scripture['id']);
+                include('_displayScripture.php');
+            }
         }
-        
         
         // Gets all topics associates with a specific scripture
         function getTopicsByScriptureID($scriptureId)
@@ -60,6 +45,7 @@ and open the template in the editor.
                 echo $ex->getMessage();
             }
             
+            // Else
             return false;
         }
         

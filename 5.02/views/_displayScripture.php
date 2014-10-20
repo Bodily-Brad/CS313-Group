@@ -5,10 +5,14 @@ echo ' - "' .  $scripture['content'] . '"<br>';
 
 if (!empty($topics))
 {
-    echo "<ul>";
+    $first = true;
+    echo "Topics: ";
     foreach ($topics as $topic)
     {
-        echo "<li>{$topic['name']}</li>";
+        if (!$first) echo ", ";
+        echo $topic['name'];
+        $first = false;
     }
-    echo "</ul>";
+    echo "<br>";
+    echo "<br>";
 }
