@@ -15,7 +15,7 @@ SELECT 'SCRIPTURES' AS "Drop Table";
 DROP TABLE IF EXISTS scriptures;
 
 -- ------------------------------------------------------------------
--- Create SCRIPTURES table.
+-- Create and seed SCRIPTURES table.
 -- ------------------------------------------------------------------
 SELECT 'SCRIPTURES' AS "Create Table";
 
@@ -79,6 +79,104 @@ VALUES
 , 9
 , 'He is the light and the life of the world; yea, a light that is endless, that can never be darkened; yea, and also a life which is endless, that there can be no more eath.');
 
+-- Conditionally drop objects.
+SELECT 'TOPICS' AS "Drop Table";
+DROP TABLE IF EXISTS topics;
+
+-- ------------------------------------------------------------------
+-- Create and seed TOPICS table.
+-- ------------------------------------------------------------------
+SELECT 'TOPICS' AS "Create Table";
+
+CREATE TABLE topics
+( id             	      INT UNSIGNED PRIMARY KEY AUTO_INCREMENT
+, name			      CHAR(30)     NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+INSERT INTO topics
+( id
+, name)
+VALUES
+( NULL
+, 'Faith');
+
+INSERT INTO topics
+( id
+, name)
+VALUES
+( NULL
+, 'Sacrifice');
+
+INSERT INTO topics
+( id
+, name)
+VALUES
+( NULL
+, 'Charity');
+
+INSERT INTO topics
+( id
+, name)
+VALUES
+( NULL
+, 'Light');
+
+-- Conditionally drop objects.
+SELECT 'SCRIPTURE_TOPIC_LOOKUP' AS "Drop Table";
+DROP TABLE IF EXISTS scripture_topic_lookup;
+
+-- ------------------------------------------------------------------
+-- Create SCRIPTURE_TOPIC_LOOKUP table.
+-- ------------------------------------------------------------------
+SELECT 'SCRIPTURE_TOPIC_LOOKUP' AS "Create Table";
+
+CREATE TABLE scripture_topic_lookup
+( id             	      INT UNSIGNED PRIMARY KEY AUTO_INCREMENT
+, scripture_id                INT UNSIGNED NOT NULL
+, topic_id                    INT UNSIGNED NOT NULL
+, KEY scripture_topic_fk1 (scripture_id)
+, CONSTRAINT scripture_topic_fk1 FOREIGN KEY (scripture_id) REFERENCES scriptures (id)
+, KEY scripture_topic_fk2 (topic_id)
+, CONSTRAINT scripture_topic_fk2 FOREIGN KEY (topic_id) REFERENCES topics (id)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+INSERT INTO scripture_topic_lookup
+( id 
+, scripture_id 
+, topic_id )
+VALUES
+( NULL
+, 1
+, (SELECT id FROM topics WHERE name = 'Light'));
+
+INSERT INTO scripture_topic_lookup
+( id 
+, scripture_id 
+, topic_id )
+VALUES
+( NULL
+, 2
+, (SELECT id FROM topics WHERE name = 'Light'));
+
+INSERT INTO scripture_topic_lookup
+( id 
+, scripture_id 
+, topic_id )
+VALUES
+( NULL
+, 3
+, (SELECT id FROM topics WHERE name = 'Light'));
+
+INSERT INTO scripture_topic_lookup
+( id 
+, scripture_id 
+, topic_id )
+VALUES
+( NULL
+, 4
+, (SELECT id FROM topics WHERE name = 'Light'));
+
+
 -- Commit inserts.
 COMMIT;
 
@@ -87,5 +185,12 @@ SHOW TABLES;
 
 -- Display table specific information.
 SELECT * FROM scriptures;
+SELECT * FROM topics;
+SELECT * FROM scripture_topic_lookup;
 
-
+-- An example of a query that pulls all scriptures related to a specific topic
+SELECT * FROM scriptures sc INNER JOIN
+(SELECT * FROM scripture_topic_lookup stl
+ WHERE topic_id = (SELECT id FROM topics WHERE name = "Light")) derived_table
+ON sc.id = derived_table.scripture_id
+ORDER BY sc.book;
