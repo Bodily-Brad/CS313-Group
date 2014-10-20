@@ -189,7 +189,8 @@ SELECT * FROM topics;
 SELECT * FROM scripture_topic_lookup;
 
 -- An example of a query that pulls all scriptures related to a specific topic
-SELECT * FROM scriptures sc INNER JOIN
+SELECT "All scriptures in database relating to Light:" AS STATEMENT;
+SELECT sc.book, sc.chapter, sc.verse FROM scriptures sc INNER JOIN
 (SELECT * FROM scripture_topic_lookup stl
  WHERE topic_id = (SELECT id FROM topics WHERE name = "Light")) derived_table
 ON sc.id = derived_table.scripture_id
