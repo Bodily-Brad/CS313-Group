@@ -13,6 +13,7 @@ and open the template in the editor.
         <?php
         // Connection to db
         require_once('dbConnection.php');
+        require_once('models/scriptures.php');
         
         if (!empty($scriptures))
         {
