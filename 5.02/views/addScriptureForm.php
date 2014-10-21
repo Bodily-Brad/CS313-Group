@@ -26,7 +26,7 @@
             <?php endforeach; ?>
             <label></label><input type='checkbox' class="checkbox" name='otherTopic' value='other'>Other <input name='otherTopicName'><br><br>
             <input type='hidden' name='action' value='addScripture'>
-            <input type='submit' value='Submit'>
+            <input type='submit' value='Add Scripture'>
         </form>
         <h1>Entered Scriptures</h1>
         <?php

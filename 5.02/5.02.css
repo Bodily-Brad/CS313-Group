@@ -12,7 +12,7 @@ form {
     display: inline-block;
     padding: 0.0em;
     border: 3px solid #ffffff;
-    box-shadow: 0px 0px 5px #3e3e3b;
+    box-shadow: 0px 0px 3px 2px #3e3e3b;
     border-radius: 1em;
     max-width: 55em;
     background-color: #f9f6ed;
@@ -39,6 +39,7 @@ label {
     width: 5em;
     vertical-align: top;
     margin-left: 0.25em;
+    font-family: Georgia, "Times New Roman", Times, serif
 }
 
 form .checkbox {
@@ -47,9 +48,19 @@ form .checkbox {
 
 input[type=submit] {
     display: block;
-    width: 5em;
-    margin: 0 auto;
-    margin-bottom: 1em;
+    float: right;
+    margin-right: 0.5em;
+    margin-bottom: 0.5em;
+    margin-top: 0.25em;
+    color: #fff;
+    background-color: #3e3e3b;
+    border: 2px solid #000000;
+    border-radius: 0.333em;
+    font-size: 1.125em;
+}
+
+input[type=submit]:hover {
+    background-color: #2a3753;    
 }
 
 textarea {
