@@ -12,7 +12,7 @@
     </head>
     <body>
         <h1>New Scripture Entry</h1>
-        <form>
+        <form method='post'>
             <label>Book: </label><input name="book"><br><br>
             <label>Chapter: </label><input name="chapter"><br><br>
             <label>Verse: </label><input name="verse"><br><br>

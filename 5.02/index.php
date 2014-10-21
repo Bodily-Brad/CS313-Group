@@ -19,6 +19,11 @@
     
     switch (strtolower($action))
     {
+        case "addscripture":
+            $scriptures = getAllScriptures();
+            $message = "Insertion code coming...";
+            include('views/displayAllScriptures.php');
+            break;
         case "showaddscriptureform":
             $scriptures = getAllScriptures();
             $topics = getAllTopics();            
@@ -28,6 +33,7 @@
         default:
             // Get all scriptures
             $scriptures = getAllScriptures();
+            $message = "Showing All Scriptures";
             include('views/displayAllScriptures.php');
             break;
     }
