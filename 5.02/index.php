@@ -14,11 +14,16 @@
     } elseif (isset($_POST["action"])) {
         $action = $_POST["action"];
     } else {
-        $action = "none";
+        $action = "showaddscriptureform";
     }
     
     switch (strtolower($action))
     {
+        case "showaddscriptureform":
+            $scriptures = getAllScriptures();
+            $topics = getAllTopics();            
+            include('views/addScriptureForm.php');
+            break;
         // Show all Scriptures
         default:
             // Get all scriptures

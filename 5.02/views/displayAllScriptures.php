@@ -23,9 +23,6 @@ and open the template in the editor.
                 include('_displayScripture.php');
             }
         }
-        
-
-        
         ?>
     </body>
 </html>
