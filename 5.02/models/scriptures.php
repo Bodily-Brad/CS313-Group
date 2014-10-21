@@ -7,7 +7,8 @@
         // Get all scriptures
         $query = "
             SELECT *
-            FROM   scriptures";
+            FROM   scriptures
+            ORDER BY book, chapter, verse";
 
         try {
             $statement = $db->prepare($query);
@@ -59,7 +60,8 @@
             FROM topics
             INNER JOIN scripture_topic_lookup
             ON scripture_topic_lookup.topic_id = topics.id
-            WHERE scripture_topic_lookup.scripture_id = :id";
+            WHERE scripture_topic_lookup.scripture_id = :id
+            ORDER BY name";
 
         try {
             $statement = $db->prepare($query);

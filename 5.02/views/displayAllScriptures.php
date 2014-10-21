@@ -7,25 +7,29 @@ and open the template in the editor.
 <html>
     <head>
         <meta charset="UTF-8">
-        <title></title>
+        <link rel="stylesheet" type="text/css" href="5.02.css" media="screen">        
+        <title>Display Scriptures</title>
     </head>
     <body>
-        <?php
-        // Connection to db
-        require_once('dbConnection.php');
-        require_once('models/scriptures.php');
-        
-        if (isset($message))
-            echo "<h2>$message</h2>";
-        
-        if (!empty($scriptures))
-        {
-            foreach ($scriptures as $scripture)
+        <article>
+            <h1>All Scriptures</h1>
+            <?php
+            // Connection to db
+            require_once('dbConnection.php');
+            require_once('models/scriptures.php');
+
+            if (isset($message))
+                echo "<span class='message'>$message</span>";
+
+            if (!empty($scriptures))
             {
-                $topics = getTopicsByScriptureID($scripture['id']);
-                include('_displayScripture.php');
+                foreach ($scriptures as $scripture)
+                {
+                    $topics = getTopicsByScriptureID($scripture['id']);
+                    include('_displayScripture.php');
+                }
             }
-        }
-        ?>
+            ?>
+        </article>
     </body>
 </html>

@@ -28,16 +28,8 @@
             <input type='hidden' name='action' value='addScripture'>
             <input type='submit' value='Add Scripture'>
         </form>
-        <h1>Entered Scriptures</h1>
         <?php
-            if (!empty($scriptures))
-            {
-                foreach ($scriptures as $scripture)
-                {
-                    $topics = getTopicsByScriptureID($scripture['id']);
-                    include('_displayScripture.php');
-                }
-            }        
+include('_displayAllScriptures.php');
         ?>
     </body>
 </html>

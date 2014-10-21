@@ -27,11 +27,20 @@
             $content = getVariable("content");
             $topics = getVariable("topics");
             
+            $otherTopic = getVariable("otherTopic");
+            $otherTopicName = getVariable("otherTopicName");
+            
+            // See if we need to add a new topic
+            if (isset($otherTopic) && isset($otherTopicName))
+            {
+                $newTopicID = insertTopic($otherTopicName);
+                $topics[] = $newTopicID;
+            }
+            
             // function insertScriptureWithTopics($book, $chapter, $verse, $content, $topicIDs)
             insertScriptureWithTopics($book, $chapter, $verse, $content, $topics);
             
             $scriptures = getAllScriptures();
-            $message = "Code for processing new topics coming...";
             include('views/displayAllScriptures.php');
             break;
         case "showaddscriptureform":
@@ -40,6 +49,7 @@
             include('views/addScriptureForm.php');
             break;
         // Show all Scriptures
+        case "showallscriptures":
         default:
             // Get all scriptures
             $scriptures = getAllScriptures();

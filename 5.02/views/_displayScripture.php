@@ -1,12 +1,15 @@
 <?php
 // Requires a $scripture record and a $topics array of topic records
-echo "<strong>" . $scripture['book'] . ' ' . $scripture['chapter'] . ":" . $scripture['verse'] . "</strong>";
-echo ' - "' .  $scripture['content'] . '"<br>';
+?>
+<section>
+<?php
+echo "<span class='scripturereference'>{$scripture['book']} {$scripture['chapter']}:{$scripture['verse']}</span>";
+echo " - <span class='scriptureContent'>\"{$scripture['content']}\"</span><br>";
 
 if (!empty($topics))
 {
     $first = true;
-    echo "Topics: ";
+    echo "<span class='topicsLabel'>Topics:</span> ";
     foreach ($topics as $topic)
     {
         if (!$first) echo ", ";
@@ -14,5 +17,6 @@ if (!empty($topics))
         $first = false;
     }
     echo "<br>";
-    echo "<br>";
 }
+?>
+</section>
