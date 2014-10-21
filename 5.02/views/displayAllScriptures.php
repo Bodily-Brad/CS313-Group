@@ -12,7 +12,7 @@ and open the template in the editor.
     </head>
     <body>
         <article>
-            <h1>All Scriptures</h1>
+            <h1>Scriptures</h1>
             <?php
             // Connection to db
             require_once('dbConnection.php');

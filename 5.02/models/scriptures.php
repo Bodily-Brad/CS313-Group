@@ -51,6 +51,31 @@
         return false;        
     }
     
+    function getScripturesByTopic($topicName)
+    {
+        global $db;
+        $query = "
+            SELECT s.id, s.book, s.chapter, s.verse, s.content, t.name
+            FROM scriptures as s
+            INNER JOIN scripture_topic_lookup as stl ON stl.scripture_id = s.id
+            INNER JOIN topics as t ON t.id = stl.topic_id
+            WHERE t.name LIKE :topicName";
+
+        try {
+            $statement = $db->prepare($query);
+            $statement->bindValue(':topicName', $topicName);
+            $statement->execute();
+            $results = $statement->fetchAll();
+            $statement->closeCursor();
+            return $results;
+        } catch (Exception $ex) {
+            echo $ex->getMessage();
+        }
+
+        // Else
+        return false;        
+    }
+    
     // Retrieves all topics associates with a specific scripture as an array of records
     function getTopicsByScriptureID($scriptureId)
     {

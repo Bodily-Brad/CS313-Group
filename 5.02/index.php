@@ -31,7 +31,7 @@
             $otherTopicName = getVariable("otherTopicName");
             
             // See if we need to add a new topic
-            if (isset($otherTopic) && isset($otherTopicName))
+            if (isset($otherTopic) && ($otherTopicName != ""))
             {
                 $newTopicID = insertTopic($otherTopicName);
                 $topics[] = $newTopicID;
@@ -47,6 +47,13 @@
             $scriptures = getAllScriptures();
             $topics = getAllTopics();            
             include('views/addScriptureForm.php');
+            break;
+        // Show scriptures by topic
+        case "showscripturesbytopic":
+            $topicName = getVariable("topicName");
+            $scriptures = getScripturesByTopic($topicName);
+            $message = "Showing results for: $topicName";
+            include('views/displayAllScriptures.php');            
             break;
         // Show all Scriptures
         case "showallscriptures":
@@ -65,7 +72,7 @@
         } elseif (isset($_POST[$variableName])) {
             $return = $_POST[$variableName];
         } else {
-            $return = "";
+            return NULL;
         }  
         
         return $return;

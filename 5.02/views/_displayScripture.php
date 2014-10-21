@@ -13,7 +13,7 @@ if (!empty($topics))
     foreach ($topics as $topic)
     {
         if (!$first) echo ", ";
-        echo $topic['name'];
+        echo "<a href='?action=ShowScripturesByTopic&topicName={$topic['name']}'>{$topic['name']}</a>";
         $first = false;
     }
     echo "<br>";
