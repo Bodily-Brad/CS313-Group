@@ -32,7 +32,8 @@
         // Get all topics
         $query = "
             SELECT *
-            FROM   topics";
+            FROM   topics
+            ORDER BY name";
 
         try {
             $statement = $db->prepare($query);
