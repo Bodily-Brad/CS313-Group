@@ -20,8 +20,18 @@
     switch (strtolower($action))
     {
         case "addscripture":
+            // Get Values
+            $book = getVariable("book");
+            $chapter = getVariable("chapter");
+            $verse = getVariable("verse");
+            $content = getVariable("content");
+            $topics = getVariable("topics");
+            
+            // function insertScriptureWithTopics($book, $chapter, $verse, $content, $topicIDs)
+            insertScriptureWithTopics($book, $chapter, $verse, $content, $topics);
+            
             $scriptures = getAllScriptures();
-            $message = "Insertion code coming...";
+            $message = "Code for processing new topics coming...";
             include('views/displayAllScriptures.php');
             break;
         case "showaddscriptureform":
@@ -38,6 +48,18 @@
             break;
     }
     
+    function getVariable($variableName)
+    {
+        if (isset($_GET[$variableName])) {
+            $return = $_GET[$variableName];
+        } elseif (isset($_POST[$variableName])) {
+            $return = $_POST[$variableName];
+        } else {
+            $return = "";
+        }  
+        
+        return $return;
+    }
  
     
 ?>

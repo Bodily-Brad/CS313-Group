@@ -21,9 +21,9 @@
             <?php
             if (empty($topics)) $topics = array();
                 foreach ($topics as $topic):?>
-                    <input type="checkbox" name="<?=$topic['name']?>" value="<?=$topic['id']?>"><?=$topic['name']?><br>
+                    <input type="checkbox" name="topics[]" value="<?=$topic['id']?>"><?=$topic['name']?><br>
             <?php endforeach; ?>
-                    <input type='checkbox' name='topics[]' value='other'>Other <input name='other'><br><br>
+            <input type='checkbox' name='otherTopic' value='other'>Other <input name='otherTopicName'><br><br>
             <input type='hidden' name='action' value='addScripture'>
             <input type='submit' value='Submit'>
         </form>
