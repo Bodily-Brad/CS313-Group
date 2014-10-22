@@ -51,9 +51,11 @@
         // Show scriptures by topic
         case "showscripturesbytopic":
             $topicName = getVariable("topicName");
+            if ($topicName == "") $topicName = "%";
             $scriptures = getScripturesByTopic($topicName);
-            $message = "Showing results for: $topicName";
-            include('views/displayAllScriptures.php');            
+            if ($topicName != "%")
+                $message = "Showing results for: $topicName";
+            include('views/addScriptureForm.php');            
             break;
         // Show all Scriptures
         case "showallscriptures":
