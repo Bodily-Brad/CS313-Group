@@ -43,6 +43,7 @@
             $scriptures = getAllScriptures();
             include('views/addScriptureForm.php');
             break;
+        default:
         case "showaddscriptureform":
             $scriptures = getAllScriptures();
             $topics = getAllTopics();            
@@ -56,14 +57,6 @@
             if ($topicName != "%")
                 $message = "Showing results for: $topicName";
             include('views/addScriptureForm.php');            
-            break;
-        // Show all Scriptures
-        case "showallscriptures":
-        default:
-            // Get all scriptures
-            $scriptures = getAllScriptures();
-            $message = "Showing All Scriptures";
-            include('views/displayAllScriptures.php');
             break;
     }
     
