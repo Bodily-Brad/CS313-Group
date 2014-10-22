@@ -41,7 +41,7 @@
             insertScriptureWithTopics($book, $chapter, $verse, $content, $topics);
             
             $scriptures = getAllScriptures();
-            include('views/displayAllScriptures.php');
+            include('views/addScriptureForm.php');
             break;
         case "showaddscriptureform":
             $scriptures = getAllScriptures();
