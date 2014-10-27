@@ -17,11 +17,16 @@ $action = getVariable("action");
 switch (strtolower($action))
 {
     case "createuser":
+        // TO DO: CHRIS
         // TO DO: Add code to create new user
+        // Get hash for the password
+        // Insert the username/hash
+        $success = insertUser();
         
         // IF SUCCESSFUL, show welcome page
-        if (true)   // For now, just assume it worked
+        if ($success)   // For now, just assume it worked
         {
+            // Set session variable
             // Show welcome page
             include('views/welcomePage.php');            
         }
@@ -32,9 +37,11 @@ switch (strtolower($action))
         }
         break;
     case "login":
+        // TO DO: Brad
         // Check if credentials are valid
         if (getCredentialsAreValid($username, $passwordHash))
         {
+            // Set username session variable
             // Show welcome page
             include('views/welcomePage.php');
         }
@@ -62,7 +69,7 @@ switch (strtolower($action))
 
 // TO DO: Create a function that returns true if the specified username and
 // password hash are valid; otherwise, false;
-function getCredentialsAreValid($username, $passwordHash)
+function getCredentialsAreValid($username, $password)
 {
     // For now, just return true
     return true;
@@ -90,5 +97,11 @@ function getVariable($variableName)
     return $return;
 }
 
+function insertUser($username, $hash)
+{
+    // TO DO: ALEX
+    
+    // Return true or false
+}
 
 ?>

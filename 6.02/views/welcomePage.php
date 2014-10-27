@@ -11,7 +11,9 @@ and open the template in the editor.
     </head>
     <body>
         <?php
+        // Get username from session
         // put your code here
         ?>
+        Hello, <?=$username?>
     </body>
 </html>
