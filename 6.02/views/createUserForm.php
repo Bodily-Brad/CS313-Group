@@ -11,7 +11,20 @@ and open the template in the editor.
     </head>
     <body>
         <form>
-            <input type="hidden" name="action" value="CreateUser">
+		<table style="width:100%">
+			<tr>
+			<td>Username: <input name="name"><br></td>
+			 </tr>
+			  <tr>
+				<td>Password: <input type="password" name="pass"><br></td>
+			  </tr>
+			  <tr>
+				<td>Re-enter Password: <input type="password" name="check"><br></td>
+			  </tr>
+			  <tr>
+				<td><input type="submit" value="Create"></td>
+			  </tr>
+			</table>
         </form>
     </body>
 </html>
