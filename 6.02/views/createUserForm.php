@@ -10,8 +10,8 @@ and open the template in the editor.
         <title></title>
     </head>
     <body>
-        <?php
-        // put your code here
-        ?>
+        <form>
+            <input type="hidden" name="action" value="CreateUser">
+        </form>
     </body>
 </html>

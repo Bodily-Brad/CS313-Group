@@ -25,8 +25,13 @@ switch (strtolower($action))
             // Show welcome page
             include('views/welcomePage.php');            
         }
+        else
+        {
+            // (re)show sign up form
+            include('views/createUserForm.php');
+        }
         break;
-    case "signin":
+    case "login":
         // Check if credentials are valid
         if (getCredentialsAreValid($username, $passwordHash))
         {
