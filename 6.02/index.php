@@ -97,11 +97,17 @@ function getVariable($variableName)
     return $return;
 }
 
-function insertUser($username, $hash)
-{
-    // TO DO: ALEX
-    
-    // Return true or false
+function insertUser($username, $hash)
+{
+    $db = loadDB();
+    $query = $db->prepare('INSERT INTO users_db.user (user_name, password) VALUES (:username, :hash)');
+ 
+    $array = array(
+	 'username' => $username,
+	 'hash' => $hash
+    );
+ 
+    return $query->execute($array);
 }
 
 ?>
