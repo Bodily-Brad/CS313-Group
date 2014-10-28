@@ -75,6 +75,7 @@ switch (strtolower($action))
         // Otherwise, show login form
         else
         {
+            $message = "Login was unsuccessful.";
             include('views/loginForm.php');            
         }
         break;
@@ -108,15 +109,16 @@ function getCredentialsAreValid($username, $passwordHash)
             SELECT *
             FROM     user
             WHERE    user_name = :username";
-        
+                
         try
         {
             $statement = $db->prepare($query);
-            $statement->bindValue(':username', $username);
+            $statement->bindValue(':username', $username);            
             $statement->execute();
             $result = $statement->fetch();
             $statement->closeCursor();
             // If user doesn't exist, return false
+            
             if (empty($result))
                 return false;
             

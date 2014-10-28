@@ -11,8 +11,11 @@ and open the template in the editor.
     </head>
     <body>
         <h1>Login</h1>
+        <?php
+            if (isset($message)) echo "$message<br>";
+        ?>
         <h2>Exising User</h2>
-        <form method="POST">
+        <form method="POST" action='.'>
             <label>Username:</label><input type="text" name="name"><br>
             <label>Password:</label><input type="password" name="pass"><br>
             <input type="hidden" name="action" value="Login">
