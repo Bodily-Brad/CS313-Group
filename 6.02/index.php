@@ -30,9 +30,6 @@ switch (strtolower($action))
           is_null($newPass) || 
           is_null($checkPass) || 
           $newPass != $checkPass) {
-         var_dump($newName);
-         var_dump($checkPass);
-         var_dump($newPass);
            echo '<script type="text/javascript"> alert("Error creating user, please check that passwords match");</script>';         
       } else {
          $query = "SELECT * FROM user WHERE user_name = '" . $newName . "'";
