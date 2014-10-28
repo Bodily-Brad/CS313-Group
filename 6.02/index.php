@@ -22,10 +22,30 @@ switch (strtolower($action))
 {
     case "createuser":
         // TO DO: CHRIS
-        // TO DO: Add code to create new user
-        // Get hash for the password
-        // Insert the username/hash
-        $success = insertUser("","");
+      $success = FALSE;
+      $newName = getVariable("name");
+      $newPass = getVariable("pass");
+      $checkPass = getVariable("check");
+      if (is_null($newName) || 
+          is_null($newPass) || 
+          is_null($checkPass) || 
+          $newPass != $checkPass) {
+         var_dump($newName);
+         var_dump($checkPass);
+         var_dump($newPass);
+           echo '<script type="text/javascript"> alert("Error creating user, please check that passwords match");</script>';         
+      } else {
+         $query = "SELECT * FROM user WHERE user_name = '" . $newName . "'";
+         $stmt = $db->prepare($query);
+         $stmt->execute();
+         //There can only be one.
+         if($stmt->rowCount() == 0){
+            $passwordHash = password_hash($password, PASSWORD_BCRYPT);
+            $success = insertUser($newName, $passwordHash);
+         } else {
+            echo '<script type="text/javascript"> alert(""That username already existed, please enter a new one"");</script>';         
+         }         
+      }
         
         // IF SUCCESSFUL, show welcome page
         if ($success)   // For now, just assume it worked
@@ -140,14 +160,11 @@ function insertUser($username, $hash)
     global $db;    
 //$db = loadDB();
 
-    $query = $db->prepare('INSERT INTO users_db.user (user_name, password) VALUES (:username, :hash)');
- 
-    $array = array(
-	 'username' => $username,
-	 'hash' => $hash
-    );
- 
-    return $query->execute($array);
+
+   $query = $db->prepare('INSERT INTO users_db.user (user_name, password) VALUES ("'. 
+           $username . '" , "' . $hash .'")');
+
+    return $query->execute();
 }
 
 ?>
