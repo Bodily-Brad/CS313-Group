@@ -16,6 +16,7 @@ and open the template in the editor.
         // Get username from session
         // put your code here
         ?>
-        Hello, presumably logged in user: '<?=$username?>'<br>
+        Welcome, <?=$username?><br>
+        <a href="?action=logout">Sign Out</a>
     </body>
 </html>

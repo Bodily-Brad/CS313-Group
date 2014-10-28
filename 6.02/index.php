@@ -17,7 +17,6 @@ $db = loadDB();
 
 // Get Action
 $action = getVariable("action");
-echo "ACTION: $action<br>";
 
 switch (strtolower($action))
 {
@@ -50,6 +49,8 @@ switch (strtolower($action))
         {
             // Set session variable
             // Show welcome page
+            loginUser($newName);
+            $username = $newName;
             include('views/welcomePage.php');            
         }
         else
@@ -71,6 +72,7 @@ switch (strtolower($action))
         {
             // TO DO: Set username session variable
             // Show welcome page
+            loginUser($username);
             include('views/welcomePage.php');
         }
         // Otherwise, show login form
@@ -80,6 +82,10 @@ switch (strtolower($action))
             include('views/loginForm.php');            
         }
         break;
+    case "logout":
+        logoutUser();
+        include('views/loginForm.php');
+        break;
     case "signup":
         include('views/createUserForm.php');
         break;
@@ -87,6 +93,7 @@ switch (strtolower($action))
         // Check if user is already logged in
         if (getUserIsLoggedIn())
         {
+            $username = getCurrentUser();
             // Show welcome page
             include('views/welcomePage.php');
         }
@@ -105,9 +112,6 @@ function getCredentialsAreValid($username, $password)
     {
         global $db;
 
-        echo "Params:<br>";
-        echo "username: $username<br>";
-        echo "pass: $password<br>";
         // Query String
         $query = "
             SELECT *
@@ -137,12 +141,27 @@ function getCredentialsAreValid($username, $password)
         }        
     }
 
-// TO DO: Create a function that returns true if a valid user is logged in;
-// otherwise, false.
+function getCurrentUser()
+{
+    return $_SESSION["currentUser"];
+}
+    
+function loginUser($username)
+{
+    $_SESSION["currentUser"] = $username;
+}
+
+function logoutUser()
+{
+    unset($_SESSION["currentUser"]);
+}
+   
 function getUserIsLoggedIn()
 {
+    // Check session variable
+    if (isset($_SESSION["currentUser"])) return true;
     
-    // For now, just return false
+    // else
     return false;
 }
 
