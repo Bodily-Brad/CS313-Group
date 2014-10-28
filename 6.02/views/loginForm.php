@@ -17,8 +17,8 @@ and open the template in the editor.
             <?php
                 if (isset($message)) echo "<span class='message'>$message</span><br>";
             ?>            
-            <label>Username:</label><input type="text" name="name"><br>
-            <label>Password:</label><input type="password" name="pass"><br>
+            <label>Username:</label><input type="text" name="name" value="<?php if (isset($username)) echo $username; else echo ""; ?>" required><br>
+            <label>Password:</label><input type="password" name="pass" required><br>
             <br>
             <label>New User?</label> <a href="?action=SignUp">Create a New Account</a>
             <input type="hidden" name="action" value="Login">

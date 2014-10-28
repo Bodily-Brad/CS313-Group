@@ -63,16 +63,13 @@ switch (strtolower($action))
         // Get username/password from form
         $username = getVariable("name");
         $password = getVariable("pass");
-        
-        // Get password hash, using BCRYPT
-        //$passwordHash = password_hash($password, PASSWORD_DEFAULT);
-        
+                
         // Check if credentials are valid
         if (getCredentialsAreValid($username, $password))
         {
-            // TO DO: Set username session variable
-            // Show welcome page
+            // "Log the user in" / store session variable
             loginUser($username);
+            // Show welcome page
             include('views/welcomePage.php');
         }
         // Otherwise, show login form
