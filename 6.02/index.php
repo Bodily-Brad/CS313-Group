@@ -17,6 +17,7 @@ $db = loadDB();
 
 // Get Action
 $action = getVariable("action");
+echo "ACTION: $action<br>";
 
 switch (strtolower($action))
 {
@@ -37,7 +38,7 @@ switch (strtolower($action))
          $stmt->execute();
          //There can only be one.
          if($stmt->rowCount() == 0){
-            $passwordHash = password_hash($password, PASSWORD_BCRYPT);
+            $passwordHash = password_hash($newPass, PASSWORD_BCRYPT);
             $success = insertUser($newName, $passwordHash);
          } else {
             echo '<script type="text/javascript"> alert(""That username already existed, please enter a new one"");</script>';         

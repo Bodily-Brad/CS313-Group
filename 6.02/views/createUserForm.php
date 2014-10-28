@@ -58,7 +58,10 @@ and open the template in the editor.
 	</script>
 	
     <body>
-        <form  action="" method="POST" >
+        <?php
+            if (isset($message)) echo "$message<br>";
+        ?>
+        <form  action="." method="POST" >
 		<table>
 			<tr>
 				<td>Username: <input name="name"><br></td>
@@ -75,6 +78,7 @@ and open the template in the editor.
 				<td><input type="submit" onclick="return validate();" value="Create"></td>
 			  </tr>
 		</table>
+            <input type='hidden' name='action' value='CreateUser'>
         </form>
     </body>
 </html>
