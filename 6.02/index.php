@@ -51,7 +51,7 @@ switch (strtolower($action))
         // Check if credentials are valid
         if (getCredentialsAreValid($username, $passwordHash))
         {
-            // Set username session variable
+            // TO DO: Set username session variable
             // Show welcome page
             include('views/welcomePage.php');
         }
