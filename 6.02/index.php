@@ -8,8 +8,12 @@
 // Session support
 session_start();
 
+// Password functions
+require_once('password.php');
+
 // Connect to database
 require_once('dbConnection.php');
+$db = loadDB();
 
 // Get Action
 $action = getVariable("action");
@@ -37,7 +41,13 @@ switch (strtolower($action))
         }
         break;
     case "login":
-        // TO DO: Brad
+        // Get username/password from form
+        $username = getVariable("name");
+        $password = getVariable("password");
+        
+        // Get password hash, using BCRYPT
+        $passwordHash = password_hash($password, PASSWORD_BCRYPT);
+        
         // Check if credentials are valid
         if (getCredentialsAreValid($username, $passwordHash))
         {
@@ -72,16 +82,39 @@ switch (strtolower($action))
 
 // TO DO: Create a function that returns true if the specified username and
 // password hash are valid; otherwise, false;
-function getCredentialsAreValid($username, $password)
-{
-    // For now, just return true
-    return true;
-}
+function getCredentialsAreValid($username, $passwordHash)
+    {
+        global $db;
+
+        // Query String
+        $query = "
+            SELECT *
+            FROM     user
+            WHERE    user_name = :username";
+        
+        try
+        {
+            $statement = $db->prepare($query);
+            $statement->bindValue(':username', $username);
+            $statement->execute();
+            $result = $statement->fetch();
+            $statement->closeCursor();
+            // If user doesn't exist, return false
+            if (empty($result))
+                return false;
+            
+            return ($result['password'] == $passwordHash);
+        } catch (PDOException $ex) {
+            echo $ex->getMessage();
+            exit;
+        }        
+    }
 
 // TO DO: Create a function that returns true if a valid user is logged in;
 // otherwise, false.
 function getUserIsLoggedIn()
 {
+    
     // For now, just return false
     return false;
 }
@@ -104,7 +137,8 @@ function insertUser($username, $hash)
 
 {
 
-    $db = loadDB();
+    global $db;    
+//$db = loadDB();
 
     $query = $db->prepare('INSERT INTO users_db.user (user_name, password) VALUES (:username, :hash)');
  
@@ -114,7 +148,6 @@ function insertUser($username, $hash)
     );
  
     return $query->execute($array);
-
 }
 
 ?>

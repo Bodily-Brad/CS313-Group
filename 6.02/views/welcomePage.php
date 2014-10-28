@@ -14,6 +14,6 @@ and open the template in the editor.
         // Get username from session
         // put your code here
         ?>
-        Hello, <?=$username?>
+        Hello, presumably logged in user: '<?=$username?>'<br>
     </body>
 </html>
