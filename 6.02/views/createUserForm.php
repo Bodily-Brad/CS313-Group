@@ -7,7 +7,8 @@ and open the template in the editor.
 <html>
     <head>
         <meta charset="UTF-8">
-        <title>Create User</title>
+        <link rel="stylesheet" type="text/css" href="6.02.css" media="screen">
+        <title>6.02 - Sign-up Page</title>
     </head>
 	
 	<script>
