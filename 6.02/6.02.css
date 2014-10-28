@@ -54,12 +54,11 @@ article h5 {
 form {
     display: inline-block;
     margin-bottom: 1em;
-    padding: 0;
     border: 3px solid #ffffff;
     box-shadow: 0px 0px 3px 2px #3e3e3b;
     border-radius: 1em;
-    width: 27em;
-    max-width: 27em;
+    width: 32em;
+    max-width: 32em;
     background-color: #f9f6ed;
 }
 
@@ -80,8 +79,9 @@ form h5 {
 
 label {
     display: inline-block;
-    width: 5em;
+    width: 6.5em;
     vertical-align: top;
+    margin-top: 0.25em;
     margin-left: 0.25em;
     font-family: Georgia, "Times New Roman", Times, serif
 }
@@ -92,6 +92,7 @@ form .checkbox {
 
 input {
     margin-left: 0.5em;
+    margin-top: 0.25em;
 }
 
 input[type=text],

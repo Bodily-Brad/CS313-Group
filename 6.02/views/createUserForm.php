@@ -59,27 +59,21 @@ and open the template in the editor.
 	</script>
 	
     <body>
-        <?php
-            if (isset($message)) echo "$message<br>";
-        ?>
+        <h1>Sign-up Page</h1>
+
         <form  action="." method="POST" >
-		<table>
-			<tr>
-				<td>Username: <input name="name"><br></td>
-			 </tr>
-			  <tr>
-				<td>Password: <input type="password" name="pass" id="pass" onkeyup="checkPass()"><br></td>
-				<td id="warn1" style="color:red">** Must be at least 7 characters and contain a number</td>
-			  </tr>
-			  <tr>
-				<td>Re-enter Password: <input type="password" onkeyup="checkCopy()" name="check" id="check"><br></td>
-				<td id="warn2" style="color:red">** Passwords do not match</td>
-			  </tr>
-			  <tr>
-				<td><input type="submit" onclick="return validate();" value="Create"></td>
-			  </tr>
-		</table>
+            <h2>Create New Account</h2>
+            <?php
+                if (isset($message)) echo "$message<br>";
+            ?>
+            <label>Username:</label><input name="name"><br>
+            <label></label><span id="warn1" style="color:red">** Must be at least 7 characters and contain a number</span><br>
+            <label>Password:</label><input type="password" name="pass" id="pass" onkeyup="checkPass()"><br>
+            <label>Re-Enter Password:</label><input type="password" onkeyup="checkCopy()" name="check" id="check"><br>
+            <label></label><span id="warn2" style="color:red">** Passwords do not match</span><br><br>
             <input type='hidden' name='action' value='CreateUser'>
+            <a href=".">Return to Sign-in Page</a>
+            <input type="submit" onclick="return validate();" value="Create">
         </form>
     </body>
 </html>

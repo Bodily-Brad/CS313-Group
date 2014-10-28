@@ -61,13 +61,13 @@ switch (strtolower($action))
     case "login":
         // Get username/password from form
         $username = getVariable("name");
-        $password = getVariable("password");
+        $password = getVariable("pass");
         
         // Get password hash, using BCRYPT
-        $passwordHash = password_hash($password, PASSWORD_BCRYPT);
+        //$passwordHash = password_hash($password, PASSWORD_DEFAULT);
         
         // Check if credentials are valid
-        if (getCredentialsAreValid($username, $passwordHash))
+        if (getCredentialsAreValid($username, $password))
         {
             // TO DO: Set username session variable
             // Show welcome page
@@ -76,7 +76,7 @@ switch (strtolower($action))
         // Otherwise, show login form
         else
         {
-            $message = "Login was unsuccessful.";
+            $message = "Invalid username or password";
             include('views/loginForm.php');            
         }
         break;
@@ -101,10 +101,13 @@ switch (strtolower($action))
 
 // TO DO: Create a function that returns true if the specified username and
 // password hash are valid; otherwise, false;
-function getCredentialsAreValid($username, $passwordHash)
+function getCredentialsAreValid($username, $password)
     {
         global $db;
 
+        echo "Params:<br>";
+        echo "username: $username<br>";
+        echo "pass: $password<br>";
         // Query String
         $query = "
             SELECT *
@@ -119,11 +122,15 @@ function getCredentialsAreValid($username, $passwordHash)
             $result = $statement->fetch();
             $statement->closeCursor();
             // If user doesn't exist, return false
-            
             if (empty($result))
+            {
+                echo "didn't find anything<br>";
                 return false;
+            }
             
-            return ($result['password'] == $passwordHash);
+            return (password_verify($password, $result['password']));
+            
+            //return ($result['password'] == $passwordHash);
         } catch (PDOException $ex) {
             echo $ex->getMessage();
             exit;
@@ -154,7 +161,6 @@ function getVariable($variableName)
 }
 
 function insertUser($username, $hash)
-
 {
 
     global $db;    

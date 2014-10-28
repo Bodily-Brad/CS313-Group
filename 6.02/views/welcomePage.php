@@ -7,9 +7,11 @@ and open the template in the editor.
 <html>
     <head>
         <meta charset="UTF-8">
-        <title></title>
+        <link rel="stylesheet" type="text/css" href="6.02.css" media="screen">
+        <title>6.02 Welcome Page</title>
     </head>
     <body>
+        <h1>"Homepage"</h1>
         <?php
         // Get username from session
         // put your code here
