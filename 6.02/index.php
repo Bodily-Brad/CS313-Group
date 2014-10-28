@@ -21,7 +21,7 @@ switch (strtolower($action))
         // TO DO: Add code to create new user
         // Get hash for the password
         // Insert the username/hash
-        $success = insertUser();
+        $success = insertUser("","");
         
         // IF SUCCESSFUL, show welcome page
         if ($success)   // For now, just assume it worked
@@ -50,6 +50,9 @@ switch (strtolower($action))
         {
             include('views/loginForm.php');            
         }
+        break;
+    case "signup":
+        include('views/createUserForm.php');
         break;
     default:
         // Check if user is already logged in
@@ -97,9 +100,12 @@ function getVariable($variableName)
     return $return;
 }
 
-function insertUser($username, $hash)
-{
-    $db = loadDB();
+function insertUser($username, $hash)
+
+{
+
+    $db = loadDB();
+
     $query = $db->prepare('INSERT INTO users_db.user (user_name, password) VALUES (:username, :hash)');
  
     $array = array(
@@ -107,7 +113,8 @@ function insertUser($username, $hash)
 	 'hash' => $hash
     );
  
-    return $query->execute($array);
+    return $query->execute($array);
+
 }
 
 ?>
