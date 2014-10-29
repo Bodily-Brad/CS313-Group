@@ -1,9 +1,4 @@
 <!DOCTYPE html>
-<!--
-To change this license header, choose License Headers in Project Properties.
-To change this template file, choose Tools | Templates
-and open the template in the editor.
--->
 <html>
     <head>
         <meta charset="UTF-8">
@@ -17,8 +12,8 @@ and open the template in the editor.
             <?php
                 if (isset($message)) echo "<span class='message'>$message</span><br>";
             ?>            
-            <label>Username:</label><input type="text" name="name" value="<?php if (isset($username)) echo $username; else echo ""; ?>" required><br>
-            <label>Password:</label><input type="password" name="pass" required><br>
+            <label>Username:</label><input type="text" name="username" value="<?php if (isset($username)) echo $username; else echo ""; ?>" required><br>
+            <label>Password:</label><input type="password" name="password" required><br>
             <br>
             <label>New User?</label> <a href="?action=SignUp">Create a New Account</a>
             <input type="hidden" name="action" value="Login">

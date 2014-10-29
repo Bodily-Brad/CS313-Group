@@ -1,9 +1,4 @@
 <!DOCTYPE html>
-<!--
-To change this license header, choose License Headers in Project Properties.
-To change this template file, choose Tools | Templates
-and open the template in the editor.
--->
 <html>
     <head>
         <meta charset="UTF-8">
@@ -13,10 +8,17 @@ and open the template in the editor.
     <body>
         <h1>"Homepage"</h1>
         <?php
-        // Get username from session
-        // put your code here
+            if (!isset($username)) $username = "Nameless entity from beyond the stars(!?)";
         ?>
         Welcome, <?=$username?><br>
-        <a href="?action=logout">Sign Out</a>
+        <p>
+            We wish there was more we could show you here, but... the assignment
+            details made it sound like adding anything to this page could be
+            problematic, so we've avoided anything extraneous - we just didn't
+            want to risk causing any problems, you know?
+        </p>
+        <p>
+            In the meantime, feel free to <a href="?action=logout">Sign Out</a>.
+        </p>
     </body>
 </html>
